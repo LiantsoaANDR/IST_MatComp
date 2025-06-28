@@ -28,13 +28,18 @@ class Couche:
                 resultat = calcul_puck_uni(E_f, E_m, V_f, V_m, u_m, u_f)
                 print("Formules de PUCK uni :")
                 print(resultat)
+                self.E_x = resultat["E_x"]
+                self.E_y = resultat["E_y"]
+                self.G_xy = resultat["G_xy"]
+                self.u_xy = resultat["u_xy"]
+                self.u_yx = resultat["u_yx"]
         else :
             print("Formules BI :")
             resultat = calcul_puck_bi(E_f, E_m, V_f, V_m, u_f, u_m, A_1, A_2)
             print(resultat)
 
   
-    def calcul_Q(E_x, u_xy, E_y, G_xy):
+    def calcul_Q(self):
         """
         Calcul de la matrice de souplesse et son inverse qui est Q
         """
