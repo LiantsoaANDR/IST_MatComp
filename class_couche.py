@@ -1,9 +1,9 @@
+import numpy as np
+
 from loi_melange import calcul_melange
 from formules_PUCK_UNI import calcul_puck_uni
 from formules_PUCK_BI import calcul_puck_bi
 from math import cos, sin, radians
-
-import numpy as np
 
 
 class Couche:

@@ -1,3 +1,5 @@
+import csv
+
 from loi_melange import calcul_melange
 from formules_PUCK_UNI import calcul_puck_uni
 from formules_PUCK_BI import calcul_puck_bi
@@ -32,10 +34,10 @@ def main():
     print("Le nombre de couche est : {} ".format(Couche.nb_objects))
 
 
-"""
-with open("resultat.txt", "w") as f:
-    f.write(str(resultat))
-"""
+    with open("resultats_couche.csv", "w", newline="") as csvfile:
+        writer = csv.DictWriter(csvfile, fieldnames=resultat_1.keys())
+        writer.writeheader()
+        writer.writerow(resultat_1)
 
 
 if __name__ == "__main__":
