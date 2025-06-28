@@ -19,4 +19,4 @@ def calcul_puck_uni(E_f, E_m, V_f, V_m, u_m, u_f):
     u_xy = u_f * V_f + u_m * V_m
     u_yx = u_xy * E_y / E_x
 
-    return {"E_x" : round(E_x, 2), "E_y" : round(E_y, 2), "G_xy" : round(G_xy, 2), "u_xy" : round(u_xy, 2), "u_yx" : round(u_yx, 2)}
+    return {"E_x" : E_x, "E_y" : E_y, "G_xy" : G_xy, "u_xy" : u_xy, "u_yx" : u_yx}
