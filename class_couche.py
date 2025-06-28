@@ -13,7 +13,7 @@ class Couche:
 
     __nb_objects = 0
     def __init__(self, id=None, is_uni = True, E_f = 0, u_f = 0, V_f = 0, E_m = 0, u_m = 0, alpha = 0, teta = 0, A_1 = None, A_2 = None):
-        """Initialize the new object"""
+        """Initialize la couche"""
         if id is not None:
             self.id = id
         else:
@@ -33,13 +33,23 @@ class Couche:
             else :
                 resultat = calcul_puck_uni(E_f, E_m, V_f, V_m, u_m, u_f)
                 print("Formules de PUCK uni :")
-                print(resultat)
+
                 self.E_x = resultat["E_x"]
                 self.E_y = resultat["E_y"]
                 self.G_xy = resultat["G_xy"]
                 self.u_xy = resultat["u_xy"]
                 self.u_yx = resultat["u_yx"]
+
                 self.Q = self.calcul_Q()
+                self.R = self.calcul_R()
+
+                self.S_prim = self.calcul_S_prim()
+                self.E_1 = 1 / self.S_prim[0, 0]
+                self.E_2 = 1 / self.S_prim[1, 1]
+                self.G_12 = 1 / self.S_prim[2, 2]
+                self.u_12 = (-1) * self.S_prim[0, 1] / self.S_prim[0, 0]
+                self.u_16 = (-1) * self.S_prim[0, 2] / self.S_prim[0, 0]
+                self.u_26 = (-1) * self.S_prim[1, 2] / self.S_prim[1, 1]
         else :
             print("Formules BI :")
             resultat = calcul_puck_bi(E_f, E_m, V_f, V_m, u_f, u_m, A_1, A_2)
@@ -48,7 +58,7 @@ class Couche:
   
     def calcul_Q(self):
         """
-        Calcul de la matrice de souplesse S et son inverse qui est Q
+        Calcul de la matrice de souplesse S et son inverse qui est Q dans le repere d’orthotropie
         """
         S = np.zeros((3, 3))
         S[0, 0] = 1 / self.E_x
@@ -60,6 +70,7 @@ class Couche:
         Q = np.linalg.inv(S)
 
         return Q
+
 
     def calcul_R(self):
         """"
@@ -80,8 +91,18 @@ class Couche:
         R[2, 1] = c * s
         R[2, 2] = (c**2) - (s**2)
 
+        return R
 
 
+    def calcul_S_prim(self):
+        """
+        Calcul de la matrice de souplesse dans le repere de sollicitations
+        """
+        Q_prim = self.R @ self.Q @ self.R.T
+
+        S_prim = np.linalg.inv(Q_prim)
+
+        return S_prim
 
 
 
