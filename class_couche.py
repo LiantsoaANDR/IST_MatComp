@@ -38,51 +38,51 @@ class Couche:
             else :
                 resultat = calcul_puck_uni(E_f, E_m, V_f, V_m, u_m, u_f)
                 print("Formules de PUCK uni :")
-
-                self.E_x = resultat["E_x"]
-                self.E_y = resultat["E_y"]
-                self.G_xy = resultat["G_xy"]
-                self.u_xy = resultat["u_xy"]
-                self.u_yx = resultat["u_yx"]
-
-                self.Q = self.calcul_Q()
-                self.R = self.calcul_R()
-
-                self.S_prim = self.calcul_S_prim()
-                self.E_1 = 1 / self.S_prim[0, 0]
-                self.E_2 = 1 / self.S_prim[1, 1]
-                self.G_12 = 1 / self.S_prim[2, 2]
-                self.u_12 = (-1) * self.S_prim[0, 1] / self.S_prim[0, 0]
-                self.u_16 = (-1) * self.S_prim[0, 2] / self.S_prim[0, 0]
-                self.u_26 = (-1) * self.S_prim[1, 2] / self.S_prim[1, 1]
-
-                self.FA_prim = self.calcul_FA_prim()
-                self.FB_prim = self.calcul_FB_prim()
-                F_11 = self.FA_prim[0, 0]
-                F_22 = self.FA_prim[1, 1]
-                F_66 = self.FA_prim[2, 2]
-                F_1 = self.FB_prim[0, 0]
-                F_2 = self.FB_prim[1, 0]
-                F_6 = self.FB_prim[2, 0]
-                F_12 = self.FA_prim[0, 1]
-
-                self.sigma_1T = ((-1)*F_1 + (((F_1**2) + 4*F_11)**0.5)) / (2 * F_11)
-                self.sigma_1C = ((-1)*F_1 - (((F_1**2) + 4*F_11)**0.5)) / (2 * F_11)
-
-                self.sigma_2T = ((-1)*F_2 + (((F_2**2) + 4*F_22)**0.5)) / (2 * F_22)
-                self.sigma_2C = ((-1)*F_2 - (((F_2**2) + 4*F_22)**0.5)) / (2 * F_22)
-
-                self.sigma_6_plus = ((-1)*F_6 + (((F_6**2) + 4*F_66)**0.5)) / (2 * F_66)
-                self.sigma_6_moins = ((-1)*F_6 - (((F_6**2) + 4*F_66)**0.5)) / (2 * F_66)
-
-                B_1 = F_11 + F_22 + 2*F_12
-                B_2 = F_1 + F_2
-                self.sigma_b_plus = ((-1)*B_2 + (((B_2**2) + 4*B_1)**0.5)) / (2 * B_1)
-                self.sigma_b_moins = ((-1)*B_2 - (((B_2**2) + 4*B_1)**0.5)) / (2 * B_1)
         else :
             print("Formules BI :")
             resultat = calcul_puck_bi(E_f, E_m, V_f, V_m, u_f, u_m, A_1, A_2)
             print(resultat)
+
+        self.E_x = resultat["E_x"]
+        self.E_y = resultat["E_y"]
+        self.G_xy = resultat["G_xy"]
+        self.u_xy = resultat["u_xy"]
+        self.u_yx = resultat["u_yx"]
+
+        self.Q = self.calcul_Q()
+        self.R = self.calcul_R()
+
+        self.S_prim = self.calcul_S_prim()
+        self.E_1 = 1 / self.S_prim[0, 0]
+        self.E_2 = 1 / self.S_prim[1, 1]
+        self.G_12 = 1 / self.S_prim[2, 2]
+        self.u_12 = (-1) * self.S_prim[0, 1] / self.S_prim[0, 0]
+        self.u_16 = (-1) * self.S_prim[0, 2] / self.S_prim[0, 0]
+        self.u_26 = (-1) * self.S_prim[1, 2] / self.S_prim[1, 1]
+
+        self.FA_prim = self.calcul_FA_prim()
+        self.FB_prim = self.calcul_FB_prim()
+        F_11 = self.FA_prim[0, 0]
+        F_22 = self.FA_prim[1, 1]
+        F_66 = self.FA_prim[2, 2]
+        F_1 = self.FB_prim[0, 0]
+        F_2 = self.FB_prim[1, 0]
+        F_6 = self.FB_prim[2, 0]
+        F_12 = self.FA_prim[0, 1]
+
+        self.sigma_1T = ((-1)*F_1 + (((F_1**2) + 4*F_11)**0.5)) / (2 * F_11)
+        self.sigma_1C = ((-1)*F_1 - (((F_1**2) + 4*F_11)**0.5)) / (2 * F_11)
+
+        self.sigma_2T = ((-1)*F_2 + (((F_2**2) + 4*F_22)**0.5)) / (2 * F_22)
+        self.sigma_2C = ((-1)*F_2 - (((F_2**2) + 4*F_22)**0.5)) / (2 * F_22)
+
+        self.sigma_6_plus = ((-1)*F_6 + (((F_6**2) + 4*F_66)**0.5)) / (2 * F_66)
+        self.sigma_6_moins = ((-1)*F_6 - (((F_6**2) + 4*F_66)**0.5)) / (2 * F_66)
+
+        B_1 = F_11 + F_22 + 2*F_12
+        B_2 = F_1 + F_2
+        self.sigma_b_plus = ((-1)*B_2 + (((B_2**2) + 4*B_1)**0.5)) / (2 * B_1)
+        self.sigma_b_moins = ((-1)*B_2 - (((B_2**2) + 4*B_1)**0.5)) / (2 * B_1)
 
   
     def calcul_Q(self):
