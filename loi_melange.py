@@ -1,0 +1,16 @@
+def calcul_melange(E_f, E_m, V_f, V_m, u_m, u_f):
+    """
+    Calcul E_x , E_y à partir de la Loi des mélanges
+    _ E_f : module d'Young des fibres
+    _ V_f : fraction volumique des fibres
+    _ E_m : module d'Young de la matrice
+    _ V_m : fraction volumique de la matrice
+    _ u_m : coefficient de poisson de la matrice
+    _ u_f : coefficient de poisson des fibres
+    """
+    E_x = E_f * V_f + E_m * V_m
+    E_y = (E_f * E_m) / (V_f * E_m + V_m * E_f)
+
+    u_xy = u_f * V_f + u_m * V_m
+    
+    return {"E_x" : round(E_x, 2), "E_y" : round(E_y, 2), "u_xy" : round(u_xy, 2)}
