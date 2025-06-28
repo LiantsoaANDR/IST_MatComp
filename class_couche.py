@@ -1,6 +1,8 @@
 from loi_melange import calcul_melange
 from formules_PUCK_UNI import calcul_puck_uni
 from formules_PUCK_BI import calcul_puck_bi
+from math import cos, sin, radians
+
 import numpy as np
 
 
@@ -10,7 +12,7 @@ class Couche:
     """
 
     __nb_objects = 0
-    def __init__(self, id=None, is_uni = True, E_f = 0, u_f = 0, V_f = 0, E_m = 0, u_m = 0, A_1 = None, A_2 = None):
+    def __init__(self, id=None, is_uni = True, E_f = 0, u_f = 0, V_f = 0, E_m = 0, u_m = 0, alpha = 0, teta = 0, A_1 = None, A_2 = None):
         """Initialize the new object"""
         if id is not None:
             self.id = id
@@ -19,6 +21,9 @@ class Couche:
             self.id = Couche.__nb_objects
 
         V_m = 1 - V_f
+        self.alpha = radians(alpha)
+        self.teta = radians(teta)
+        self.beta = self.alpha - self.teta
 
         if is_uni:
             if V_f > 0.4:
@@ -55,6 +60,26 @@ class Couche:
         Q = np.linalg.inv(S)
 
         return Q
+
+    def calcul_R(self):
+        """"
+        Calcul du tenseur de changement de repere
+        """
+ 
+        c = cos(self.beta)
+        s = sin(self.beta)
+
+        R = np.zeros((3, 3))
+        R[0, 0] = c**2
+        R[0, 1] = s**2
+        R[0, 2] = 2 * c * s
+        R[1, 0] = s**2
+        R[1, 1] = c**2
+        R[1, 2] = (-2) * c * s
+        R[2, 0] = (-1) * c * s
+        R[2, 1] = c * s
+        R[2, 2] = (c**2) - (s**2)
+
 
 
 

@@ -5,7 +5,7 @@ from class_couche import Couche
 
 def main():
 
-    couche_1 = Couche(is_uni = True, E_f = 71000, u_f = 0.20, V_f = 0.353, E_m = 3000, u_m = 0.4)
+    couche_1 = Couche(is_uni = True, E_f = 71000, u_f = 0.20, V_f = 0.353, E_m = 3000, u_m = 0.4, alpha = 0, teta = 0)
 
     print(couche_1.Q)
 
