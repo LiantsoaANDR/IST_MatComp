@@ -11,14 +11,14 @@ class Couche:
     Classe servant à créer des couches
     """
 
-    __nb_objects = 0
+    nb_objects = 0
     def __init__(self, id=None, is_uni = True, E_f = 0, u_f = 0, V_f = 0, E_m = 0, u_m = 0, alpha = 0, teta = 0, X_t = 0, X_c = 0, Y_t = 0, Y_c = 0, T = 0, A_1 = None, A_2 = None):
         """Initialize la couche"""
         if id is not None:
             self.id = id
         else:
-            Couche.__nb_objects += 1
-            self.id = Couche.__nb_objects
+            Couche.nb_objects += 1
+            self.id = Couche.nb_objects
 
         V_m = 1 - V_f
         self.alpha = radians(alpha)

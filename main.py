@@ -10,6 +10,8 @@ def main():
     print(couche_1.S_prim)
     print({"E_1": couche_1.E_1, "E_2": couche_1.E_2, "G_12": couche_1.G_12, "u_12": couche_1.u_12, "u_16": couche_1.u_16, "u_26": couche_1.u_26})
 
+    print(Couche.nb_objects)
+
 
 """
 with open("resultat.txt", "w") as f:
