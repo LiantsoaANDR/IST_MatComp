@@ -46,11 +46,11 @@ class Couche:
         Calcul de la matrice de souplesse S et son inverse qui est Q
         """
         S = np.zeros((3, 3))
-        S[0][0] = 1 / self.E_x
-        S[0][1] = (-1) * (self.u_xy / self.E_x)
-        S[1][0] = (-1) * (self.u_xy / self.E_x)
-        S[1][1] = 1 / self.E_y
-        S[2][2] = 1 / self.G_xy
+        S[0, 0] = 1 / self.E_x
+        S[0, 1] = (-1) * (self.u_xy / self.E_x)
+        S[1, 0] = (-1) * (self.u_xy / self.E_x)
+        S[1, 1] = 1 / self.E_y
+        S[2, 2] = 1 / self.G_xy
 
         Q = np.linalg.inv(S)
 
