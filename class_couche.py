@@ -12,7 +12,7 @@ class Couche:
     """
 
     __nb_objects = 0
-    def __init__(self, id=None, is_uni = True, E_f = 0, u_f = 0, V_f = 0, E_m = 0, u_m = 0, alpha = 0, teta = 0, A_1 = None, A_2 = None):
+    def __init__(self, id=None, is_uni = True, E_f = 0, u_f = 0, V_f = 0, E_m = 0, u_m = 0, alpha = 0, teta = 0, X_t = 0, X_c = 0, Y_t = 0, Y_c = 0, T = 0, A_1 = None, A_2 = None):
         """Initialize la couche"""
         if id is not None:
             self.id = id
@@ -24,6 +24,11 @@ class Couche:
         self.alpha = radians(alpha)
         self.teta = radians(teta)
         self.beta = self.alpha - self.teta
+        self.X_t = X_t
+        self.X_c = X_c
+        self.Y_t = Y_t
+        self.Y_c = Y_c
+        self.T = T
 
         if is_uni:
             if V_f > 0.4:
@@ -105,12 +110,3 @@ class Couche:
         return S_prim
 
 
-
-"""
-        self.E_f = E_f
-        self.u_f = u_f
-        self.V_f = V_f
-        self.E_m = E_m
-        self.u_m = u_m
-        self.V_m = 1 - V_f 
-"""
