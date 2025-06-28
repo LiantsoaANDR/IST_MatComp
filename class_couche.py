@@ -56,8 +56,8 @@ class Couche:
                 self.u_16 = (-1) * self.S_prim[0, 2] / self.S_prim[0, 0]
                 self.u_26 = (-1) * self.S_prim[1, 2] / self.S_prim[1, 1]
 
-                self.FA_prim = self.calcul_FA_prim
-                self.FB_prim = self.calcul_FB_prim
+                self.FA_prim = self.calcul_FA_prim()
+                self.FB_prim = self.calcul_FB_prim()
                 F_11 = self.FA_prim[0, 0]
                 F_22 = self.FA_prim[1, 1]
                 F_66 = self.FA_prim[2, 2]
