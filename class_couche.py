@@ -1,6 +1,7 @@
 from loi_melange import calcul_melange
 from formules_PUCK_UNI import calcul_puck_uni
 from formules_PUCK_BI import calcul_puck_bi
+import numpy as np
 
 
 class Couche:
@@ -33,6 +34,7 @@ class Couche:
                 self.G_xy = resultat["G_xy"]
                 self.u_xy = resultat["u_xy"]
                 self.u_yx = resultat["u_yx"]
+                self.Q = calcul_Q()
         else :
             print("Formules BI :")
             resultat = calcul_puck_bi(E_f, E_m, V_f, V_m, u_f, u_m, A_1, A_2)
@@ -43,8 +45,16 @@ class Couche:
         """
         Calcul de la matrice de souplesse et son inverse qui est Q
         """
-        S = [[0 for i in range(3)] for j in range(3)]
-        S[0][0] = 1/Ex
+        S = np.zeros((3, 3))
+        S[0][0] = 1 / self.E_x
+        S[0][1] = (-1) * (self.u_xy / self.E_x)
+        S[1][0] = (-1) * (self.u_xy / self.E_x)
+        S[1][1] = 1 / self.E_y
+        S[2][2] = 1 / self.G_xy
+
+        Q = np.linalg.inv(S)
+
+        return Q
 
 
 
