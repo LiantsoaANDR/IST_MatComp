@@ -55,6 +55,17 @@ class Couche:
                 self.u_12 = (-1) * self.S_prim[0, 1] / self.S_prim[0, 0]
                 self.u_16 = (-1) * self.S_prim[0, 2] / self.S_prim[0, 0]
                 self.u_26 = (-1) * self.S_prim[1, 2] / self.S_prim[1, 1]
+
+                self.FA_prim = self.calcul_FA_prim
+                self.FB_prim = self.calcul_FB_prim
+                self.sigma_1T =
+                self.sigma_1C =
+                self.sigma_2T = 
+                self.sigma_2C =
+                self.sigma_6_plus =
+                self.sigma_6_moins =
+                self.sigma_b_plus =
+                self.sigma_b_moins =
         else :
             print("Formules BI :")
             resultat = calcul_puck_bi(E_f, E_m, V_f, V_m, u_f, u_m, A_1, A_2)
@@ -110,3 +121,40 @@ class Couche:
         return S_prim
 
 
+    def calcul_FA_prim(self):
+        """
+        Calcul de la matrice FA dans le repere d'orthotropie
+        """
+        F_xx = -1 / (self.X_c * self.X_t)
+        F_yy = -1 / (self.Y_c * self.Y_t)
+        F_ss = 1 / (T**2)
+        F_xy_prim = (-1/2) * (((self.Y_c * self.Y_t) / (self.X_c * self.X_t))**0.5)
+        F_xy = F_xy_prim * ((F_xx * F_yy)**0.5)
+
+        FA = np.zeros((3, 3))
+        FA[0, 0] = F_xx
+        FA[0, 1] = F_xy
+        FA[1, 0] = F_xy
+        FA[1, 1] = F_yy
+        FA[2, 2] = F_ss
+
+        R_inv = np.linalg.inv(self.R)
+        FA_prim = R_inv.T @ FA @ R_inv
+        return FA_prim
+    
+
+    def calcul_FB_prim(self):
+        """
+        Calcul de FB dans le repere d'orthotropie
+        """
+        F_x = (1 / self.X_t) + (1 / self.X_c)
+        F_y = (1 / self.Y_t) + (1 / self.Y_c)
+
+        FB = np.zeros((3, 1))
+        FB[0, 0] = F_x
+        FB[1, 0] = F_y
+
+        R_inv = np.linalg.inv(self.R)
+        FB_prim = R_inv.T @ FB
+
+        return FB_prim
