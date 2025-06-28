@@ -15,7 +15,7 @@ def main():
     resultat_total = []
 
     for i, couche in enumerate(couches, start=1):
-        print(f"--- Couche {i} ---")
+        print("--- Couche {} ---".format(i))
         print(couche.S_prim)
 
         resultat = {
