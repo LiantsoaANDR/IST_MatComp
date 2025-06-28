@@ -5,9 +5,9 @@ from class_couche import Couche
 
 def main():
 
-    couche_1 = Couche(is_uni = True, E_f = 0, u_f = 0, V_f = 0, E_m = 0, u_m = 0)
+    couche_1 = Couche(is_uni = True, E_f = 73000, u_f = 0.325, V_f = 0.3, E_m = 5200, u_m = 0.38)
 
-    print(couche_1.Q)
+    print(couche_1.E_x)
 
 """
 with open("resultat.txt", "w") as f:

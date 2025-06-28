@@ -34,7 +34,7 @@ class Couche:
                 self.G_xy = resultat["G_xy"]
                 self.u_xy = resultat["u_xy"]
                 self.u_yx = resultat["u_yx"]
-                self.Q = calcul_Q()
+                self.Q = self.calcul_Q()
         else :
             print("Formules BI :")
             resultat = calcul_puck_bi(E_f, E_m, V_f, V_m, u_f, u_m, A_1, A_2)
@@ -43,7 +43,7 @@ class Couche:
   
     def calcul_Q(self):
         """
-        Calcul de la matrice de souplesse et son inverse qui est Q
+        Calcul de la matrice de souplesse S et son inverse qui est Q
         """
         S = np.zeros((3, 3))
         S[0][0] = 1 / self.E_x
