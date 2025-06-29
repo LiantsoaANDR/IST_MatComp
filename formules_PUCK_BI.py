@@ -30,4 +30,4 @@ def calcul_puck_bi(E_f, E_m, V_f, V_m, u_f, u_m, A_1, A_2):
 
     u_xy_0 = R/Q
 
-    return {"E_x0" : round(E_x0, 2), "E_y0" : round(E_y0, 2), "G_xy_0" : round(G_xy, 2), "u_xy_0" : round(u_xy_0, 2)}
+    return {"E_x" : E_x0, "E_y" : E_y0, "G_xy" : G_xy, "u_xy" : u_xy_0}

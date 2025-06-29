@@ -17,4 +17,4 @@ def calcul_melange(E_f, E_m, V_f, V_m, u_m, u_f):
     G_f = 1
     G_xy = (G_f * G_m) / (V_f * G_m + V_m * G_f)
     
-    return {"E_x" : round(E_x, 2), "E_y" : round(E_y, 2), "u_xy" : round(u_xy, 2), "G_xy" : round(u_xy, 2)}
+    return {"E_x" : E_x, "E_y" : E_y, "u_xy" : u_xy, "G_xy" : u_xy}

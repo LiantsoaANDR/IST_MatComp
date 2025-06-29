@@ -13,7 +13,25 @@ class Couche:
 
     nb_objects = 0
     def __init__(self, id=None, is_uni = True, E_f = 0, u_f = 0, V_f = 0, E_m = 0, u_m = 0, alpha = 0, teta = 0, X_t = 0, X_c = 0, Y_t = 0, Y_c = 0, T = 0, A_1 = None, A_2 = None):
-        """Initialize la couche"""
+        """
+        Initialise l'object couche
+        _ id : son identifiant
+        _ E_f : module d'Young des fibres
+        _ V_f : fraction volumique des fibres
+        _ E_m : module d'Young de la matrice
+        _ V_m : fraction volumique de la matrice
+        _ u_f : coefficient de poisson des fibres
+        _ u_m : coefficient de poisson de la matrice
+        _ alpha : l'angle alpha en degre
+        _ teta : l'angle teta en degre
+        _ X_t : Limite admissible en traction suivant (0,X)
+        _ X_c : Limite admissible en compression suivant (0,X)
+        _ Y_t : Limite admissible en traction suivant (0,Y)
+        _ Y_c : Limite admissible en compression suivant (0,Y)
+        _ T : Limite admissible en cisaillement dans (0,1,2)
+        _ A_1 : proportion des fibres suivant (0X)
+        _ A_2 : proportion des fibres suivant (0Y)
+        """
         if id is not None:
             self.id = id
         else:
@@ -47,7 +65,7 @@ class Couche:
         self.E_y = resultat["E_y"]
         self.G_xy = resultat["G_xy"]
         self.u_xy = resultat["u_xy"]
-        self.u_yx = resultat["u_yx"]
+        #self.u_yx = resultat["u_yx"]
 
         self.Q = self.calcul_Q()
         self.R = self.calcul_R()
