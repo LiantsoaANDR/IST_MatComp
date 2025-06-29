@@ -8,7 +8,7 @@ from math import cos, sin, radians
 
 class Couche:
     """
-    Classe servant à créer des couches
+    Classe servant à créer des couches et à faire des calculs monocouches
     """
 
     nb_objects = 0

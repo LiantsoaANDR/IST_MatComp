@@ -5,8 +5,10 @@ from formules_PUCK_UNI import calcul_puck_uni
 from formules_PUCK_BI import calcul_puck_bi
 from class_couche import Couche
 from math import degrees
+from class_stratifie import Stratifie
 
 def main():
+    #Création des monocouches pour calculs monocouches, couches est une liste de monocouches
     couches = [
         Couche(is_uni=True,  E_f=71000, u_f=0.20, V_f=0.353, E_m=3000, u_m=0.4, alpha=0,   teta=0,  X_t=1000, X_c=-650, Y_t=30, Y_c=-120, T=45),
         Couche(is_uni=True,  E_f=71000, u_f=0.20, V_f=0.353, E_m=3000, u_m=0.4, alpha=0,   teta=10,  X_t=1000, X_c=-650, Y_t=30, Y_c=-120, T=45),
@@ -20,6 +22,24 @@ def main():
         Couche(is_uni=False,  E_f=72000, u_f=0.20, V_f=0.34, E_m=3000, u_m=0.4, alpha=0,   teta=90,  X_t=650, X_c=-650, Y_t=650, Y_c=-650, T=50, A_1 =0.5, A_2=0.5)
     ]
 
+    #Création des monocouches pour calculs stratifiés, monocouches est une liste de monocouches
+    monocouches = [
+        Couche(is_uni=True,  E_f=71000, u_f=0.20, V_f=0.353, E_m=3000, u_m=0.4, alpha=0,   teta=0,  X_t=1000, X_c=-650, Y_t=30, Y_c=-120, T=45),
+        Couche(is_uni=True,  E_f=71000, u_f=0.20, V_f=0.353, E_m=3000, u_m=0.4, alpha=0,   teta=10,  X_t=1000, X_c=-650, Y_t=30, Y_c=-120, T=45),
+        Couche(is_uni=True,  E_f=71000, u_f=0.20, V_f=0.353, E_m=3000, u_m=0.4, alpha=0,   teta=30,  X_t=1000, X_c=-650, Y_t=30, Y_c=-120, T=45),
+        Couche(is_uni=True,  E_f=71000, u_f=0.20, V_f=0.353, E_m=3000, u_m=0.4, alpha=0,   teta=60,  X_t=1000, X_c=-650, Y_t=30, Y_c=-120, T=45),
+        Couche(is_uni=True,  E_f=71000, u_f=0.20, V_f=0.353, E_m=3000, u_m=0.4, alpha=0,   teta=90,  X_t=1000, X_c=-650, Y_t=30, Y_c=-120, T=45),
+        Couche(is_uni=False,  E_f=72000, u_f=0.20, V_f=0.34, E_m=3000, u_m=0.4, alpha=0,   teta=0,  X_t=650, X_c=-650, Y_t=650, Y_c=-650, T=50, A_1 =0.5, A_2=0.5),
+        Couche(is_uni=False,  E_f=72000, u_f=0.20, V_f=0.34, E_m=3000, u_m=0.4, alpha=0,   teta=10,  X_t=650, X_c=-650, Y_t=650, Y_c=-650, T=50, A_1 =0.5, A_2=0.5),
+        Couche(is_uni=False,  E_f=72000, u_f=0.20, V_f=0.34, E_m=3000, u_m=0.4, alpha=0,   teta=30,  X_t=650, X_c=-650, Y_t=650, Y_c=-650, T=50, A_1 =0.5, A_2=0.5),
+        Couche(is_uni=False,  E_f=72000, u_f=0.20, V_f=0.34, E_m=3000, u_m=0.4, alpha=0,   teta=60,  X_t=650, X_c=-650, Y_t=650, Y_c=-650, T=50, A_1 =0.5, A_2=0.5),
+        Couche(is_uni=False,  E_f=72000, u_f=0.20, V_f=0.34, E_m=3000, u_m=0.4, alpha=0,   teta=90,  X_t=650, X_c=-650, Y_t=650, Y_c=-650, T=50, A_1 =0.5, A_2=0.5)
+    ]
+    couche_stratifie = Stratifie(monocouches)
+
+
+
+    #Partie mise en forme des calculs monocouches
     resultat_total = []
 
     for i, couche in enumerate(couches, start=1):
@@ -49,7 +69,7 @@ def main():
 
     print(resultat_total)
     print("Nombre total de couches : {}".format(Couche.nb_objects))
-
+    print("Le nombre de monocouches dans la strat est : {}".format(couche_stratifie.nb_monocouches ))
 
     # Écriture dans un fichier CSV
     with open("resultats_couches.csv", "w", newline="") as f:
