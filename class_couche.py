@@ -12,7 +12,7 @@ class Couche:
     """
 
     nb_objects = 0
-    def __init__(self, id=None, is_uni = True, E_f = 0, u_f = 0, V_f = 0, E_m = 0, u_m = 0, alpha = 0, teta = 0, X_t = 0, X_c = 0, Y_t = 0, Y_c = 0, T = 0, A_1 = None, A_2 = None):
+    def __init__(self, id=None, is_uni = True, E_f = 0, u_f = 0, V_f = 0, E_m = 0, u_m = 0, alpha = 0, teta = 0, X_t = 0, X_c = 0, Y_t = 0, Y_c = 0, T = 0, A_1 = None, A_2 = None, epaisseur = 1):
         """
         Initialise l'object couche
         _ id : son identifiant
@@ -47,6 +47,7 @@ class Couche:
         self.Y_t = Y_t
         self.Y_c = Y_c
         self.T = T
+        self.epaisseur = epaisseur
 
         if is_uni:
             if V_f > 0.4:
