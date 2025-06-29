@@ -93,9 +93,6 @@ def main():
     resultat_total = []
 
     for i, couche in enumerate(couches, start=1):
-        print("--- Couche {} ---".format(i))
-        print(couche.S_prim)
-
         resultat = {
             "ID_couche": couche.id,
             "Angle Teta" : degrees(couche.teta),
@@ -117,9 +114,12 @@ def main():
 
         resultat_total.append(resultat)
 
-    print(resultat_total)
     print("Nombre total de couches : {}".format(Couche.nb_objects))
-    print("Le nombre de monocouches dans la strat a = 15 UNI est : {}".format(couche_stratifie_a_15_uni.nb_monocouches ))
+    print("Le nombre de monocouches dans la strat a = 15 UNI est : {}".format(couche_stratifie_a_15_uni.nb_monocouches))
+    print("La hauteur de la strat a = 15 UNI est : {}".format(couche_stratifie_a_15_uni.hauteur ))
+    print("Les coordonnees des couches de la strat a = 15 UNI est : \n{}".format(couche_stratifie_a_15_uni.z))
+    print("La matrice A est \n{}".format(couche_stratifie_a_15_uni.A))
+    print("La matrice D est \n{}".format(couche_stratifie_a_15_uni.D))
 
     # Écriture dans un fichier CSV
     with open("resultats_couches.csv", "w", newline="") as f:
@@ -128,7 +128,7 @@ def main():
         writer.writerows(resultat_total)
 
 
-    print("La matrice A est \n{}".format(couche_stratifie_a_15_uni.A))
+    
 
 if __name__ == "__main__":
     main()
