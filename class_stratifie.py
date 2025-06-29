@@ -49,6 +49,14 @@ class Stratifie:
         self.sigma_mb_plus = min(couche.sigma_mb_plus for couche in self.list_monocouches)
         self.sigma_mb_moins = max(couche.sigma_mb_moins for couche in self.list_monocouches)
 
+        self.delta = np.linalg.inv(self.D)
+        self.E_1f = 12 / ((self.hauteur**3) * self.delta[0, 0])
+        self.E_2f = 12 / ((self.hauteur**3) * self.delta[1, 1])
+        self.G_12f = 12 / ((self.hauteur**3) * self.delta[2, 2])
+        self.u_12f = (-1) * self.delta[0, 1] / self.delta[0, 0]
+        self.u_16f = (-1) * self.delta[0, 2] / self.delta[0, 0]
+        self.u_26f = (-1) * self.delta[1, 2] / self.delta[1, 1]
+
 
 
 
