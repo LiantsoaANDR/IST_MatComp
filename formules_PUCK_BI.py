@@ -11,7 +11,7 @@ def calcul_puck_bi(E_f, E_m, V_f, V_m, u_f, u_m, A_1, A_2):
     """
     E_x = E_f * V_f + E_m * V_m
     E_o = E_m / (1 - (u_m ** 2))
-    E_y = (E_o * (1 + 0.85)**2) / ((1 - V_f)**(1.25) + (V_f * E_o / E_f))
+    E_y = (E_o * (1 + 0.85 * V_f)**2) / ((1 - V_f)**(1.25) + (V_f * E_o / E_f))
 
     u_xy = u_f * V_f + u_m * V_m
     u_yx = u_xy * E_y / E_x
@@ -25,8 +25,8 @@ def calcul_puck_bi(E_f, E_m, V_f, V_m, u_f, u_m, A_1, A_2):
     Q = (A_2 * E_x + A_1 * E_y) / (1 - A_3)
     R = (u_xy * E_y) / (1 - A_3)
     
-    E_x0 = P - R/Q
-    E_y0 = Q - R/P
+    E_x0 = P - (R/Q)
+    E_y0 = Q - (R/P)
 
     u_xy_0 = R/Q
 
