@@ -7,9 +7,16 @@ from class_couche import Couche
 
 def main():
     couches = [
-        Couche(is_uni=True,  E_f=71000, u_f=0.20, V_f=0.353, E_m=3000, u_m=0.4, alpha=0,   teta=0,  X_t=1000, X_c=-650, Y_t=30, Y_c=-100, T=50),
-        Couche(is_uni=True,  E_f=71000, u_f=0.20, V_f=0.353, E_m=3000, u_m=0.4, alpha=0,   teta=0,  X_t=1000, X_c=-650, Y_t=30, Y_c=-100, T=50),
-        Couche(is_uni=True,  E_f=71000, u_f=0.20, V_f=0.353, E_m=3000, u_m=0.4, alpha=0,   teta=0,  X_t=1000, X_c=-650, Y_t=30, Y_c=-100, T=50)
+        Couche(is_uni=True,  E_f=71000, u_f=0.20, V_f=0.353, E_m=3000, u_m=0.4, alpha=0,   teta=0,  X_t=1000, X_c=-650, Y_t=30, Y_c=-120, T=45),
+        Couche(is_uni=True,  E_f=71000, u_f=0.20, V_f=0.353, E_m=3000, u_m=0.4, alpha=0,   teta=10,  X_t=1000, X_c=-650, Y_t=30, Y_c=-120, T=45),
+        Couche(is_uni=True,  E_f=71000, u_f=0.20, V_f=0.353, E_m=3000, u_m=0.4, alpha=0,   teta=30,  X_t=1000, X_c=-650, Y_t=30, Y_c=-120, T=45),
+        Couche(is_uni=True,  E_f=71000, u_f=0.20, V_f=0.353, E_m=3000, u_m=0.4, alpha=0,   teta=60,  X_t=1000, X_c=-650, Y_t=30, Y_c=-120, T=45),
+        Couche(is_uni=True,  E_f=71000, u_f=0.20, V_f=0.353, E_m=3000, u_m=0.4, alpha=0,   teta=90,  X_t=1000, X_c=-650, Y_t=30, Y_c=-120, T=45),
+        Couche(is_uni=False,  E_f=72000, u_f=0.20, V_f=0.4, E_m=3000, u_m=0.4, alpha=0,   teta=0,  X_t=650, X_c=-650, Y_t=650, Y_c=-650, T=50, A_1 =0.5, A_2=0.5),
+        Couche(is_uni=False,  E_f=72000, u_f=0.20, V_f=0.4, E_m=3000, u_m=0.4, alpha=0,   teta=10,  X_t=650, X_c=-650, Y_t=650, Y_c=-650, T=50, A_1 =0.5, A_2=0.5),
+        Couche(is_uni=False,  E_f=72000, u_f=0.20, V_f=0.4, E_m=3000, u_m=0.4, alpha=0,   teta=30,  X_t=650, X_c=-650, Y_t=650, Y_c=-650, T=50, A_1 =0.5, A_2=0.5),
+        Couche(is_uni=False,  E_f=72000, u_f=0.20, V_f=0.4, E_m=3000, u_m=0.4, alpha=0,   teta=60,  X_t=650, X_c=-650, Y_t=650, Y_c=-650, T=50, A_1 =0.5, A_2=0.5),
+        Couche(is_uni=False,  E_f=72000, u_f=0.20, V_f=0.4, E_m=3000, u_m=0.4, alpha=0,   teta=90,  X_t=650, X_c=-650, Y_t=650, Y_c=-650, T=50, A_1 =0.5, A_2=0.5)
     ]
 
     resultat_total = []
