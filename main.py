@@ -120,7 +120,14 @@ def main():
     print("Les coordonnees des couches de la strat a = 15 UNI est : \n{}".format(couche_stratifie_a_15_uni.z))
     print("La matrice A est \n{}".format(couche_stratifie_a_15_uni.A))
     print("La matrice D est \n{}".format(couche_stratifie_a_15_uni.D))
-
+    print("La matrice B est \n{}".format(couche_stratifie_a_15_uni.B))
+    print("La matrice GA est \n{}".format(couche_stratifie_a_15_uni.list_monocouches[1].GA))
+    print("La matrice GB est \n{}".format(couche_stratifie_a_15_uni.list_monocouches[1].GB))
+    print("La matrice GA_prim est \n{}".format(couche_stratifie_a_15_uni.list_monocouches[1].GA_prim))
+    print("La matrice GB_prim est \n{}".format(couche_stratifie_a_15_uni.list_monocouches[1].GB_prim))
+    print("La matrice Q_m est \n{}".format(couche_stratifie_a_15_uni.Q_m))
+    print("La matrice S_m est \n{}".format(couche_stratifie_a_15_uni.S_m))
+    print("Les const prat sont \n{}".format(couche_stratifie_a_15_uni.calcul_cons_pratique()))
     # Écriture dans un fichier CSV
     with open("resultats_couches.csv", "w", newline="") as f:
         writer = csv.DictWriter(f, fieldnames=resultat_total[0].keys())

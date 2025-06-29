@@ -74,8 +74,12 @@ class Couche:
         self.u_16 = (-1) * self.S_prim[0, 2] / self.S_prim[0, 0]
         self.u_26 = (-1) * self.S_prim[1, 2] / self.S_prim[1, 1]
 
-        self.FA_prim = self.calcul_FA_prim()
-        self.FB_prim = self.calcul_FB_prim()
+        dict_FA = self.calcul_FA_prim()
+        dict_FB = self.calcul_FB_prim()
+        self.FA = dict_FA["FA"]
+        self.FB = dict_FB["FB"]
+        self.FA_prim = dict_FA["FA_prim"]
+        self.FB_prim = dict_FB["FB_prim"]
         F_11 = self.FA_prim[0, 0]
         F_22 = self.FA_prim[1, 1]
         F_66 = self.FA_prim[2, 2]
@@ -98,10 +102,15 @@ class Couche:
         self.sigma_b_plus = ((-1)*B_2 + (((B_2**2) + 4*B_1)**0.5)) / (2 * B_1)
         self.sigma_b_moins = ((-1)*B_2 - (((B_2**2) + 4*B_1)**0.5)) / (2 * B_1)
 
+        self.GA = self.calcul_GA()
+        self.GB = self.calcul_GB()
+        self.GA_prim = self.R @ self.GA @ self.R.T
+        self.GB_prim = self.R @ self.GB
+
   
     def calcul_Q(self):
         """
-        Calcul de la matrice de souplesse S et son inverse qui est Q dans le repere d orthotropie
+        Calcul de la matrice de souplesse S et son inverse qui est Q la matrice de rigidité
         """
         S = np.zeros((3, 3))
         S[0, 0] = 1 / self.E_x
@@ -150,7 +159,7 @@ class Couche:
 
     def calcul_FA_prim(self):
         """
-        Calcul de la matrice FA dans le repere d orthotropie
+        Calcul de la matrice FA et de FA prim
         """
         F_xx = -1 / (self.X_c * self.X_t)
         F_yy = -1 / (self.Y_c * self.Y_t)
@@ -167,12 +176,12 @@ class Couche:
 
         R_inv = np.linalg.inv(self.R)
         FA_prim = R_inv.T @ FA @ R_inv
-        return FA_prim
+        return {"FA" : FA, "FA_prim" : FA_prim}
     
 
     def calcul_FB_prim(self):
         """
-        Calcul de FB dans le repere d'orthotropie
+        Calcul de FB et de FB prim
         """
         F_x = (1 / self.X_t) + (1 / self.X_c)
         F_y = (1 / self.Y_t) + (1 / self.Y_c)
@@ -184,4 +193,23 @@ class Couche:
         R_inv = np.linalg.inv(self.R)
         FB_prim = R_inv.T @ FB
 
-        return FB_prim
+        return {"FB" : FB, "FB_prim" : FB_prim}
+    
+    def calcul_GA(self):
+        """
+        Calcul de la matrice GA
+        """
+        Q = self.Q
+        FA = self.FA
+        GA = Q @ FA @ Q
+        return GA
+    
+    def calcul_GB(self):
+        """
+        Calcul de la matrice GB
+        """
+        Q = self.Q
+        FB = self.FB
+        GB = Q @ FB
+        return GB
+    
