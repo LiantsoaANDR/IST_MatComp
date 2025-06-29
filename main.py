@@ -128,6 +128,18 @@ def main():
     print("La matrice Q_m est \n{}".format(couche_stratifie_a_15_uni.Q_m))
     print("La matrice S_m est \n{}".format(couche_stratifie_a_15_uni.S_m))
     print("Les const prat sont \n{}".format(couche_stratifie_a_15_uni.calcul_cons_pratique()))
+    print("La matrice UA est \n{}".format(couche_stratifie_a_15_uni.list_monocouches[1].UA))
+    print("La matrice UB est \n{}".format(couche_stratifie_a_15_uni.list_monocouches[1].UB))
+
+    print("sigma_m1T est {}".format(couche_stratifie_a_15_uni.list_monocouches[1].sigma_m1T))
+    print("sigma_m1C est {}".format(couche_stratifie_a_15_uni.list_monocouches[1].sigma_m1C))
+    print("sigma_m2T est {}".format(couche_stratifie_a_15_uni.list_monocouches[1].sigma_m2T))
+    print("sigma_m2C est {}".format(couche_stratifie_a_15_uni.list_monocouches[1].sigma_m2C))
+    print("sigma_m6_plus est {}".format(couche_stratifie_a_15_uni.list_monocouches[1].sigma_m6_plus))
+    print("sigma_mb_plus est {}".format(couche_stratifie_a_15_uni.list_monocouches[1].sigma_mb_plus))
+
+    print("sigma_m1T du stratifie est : {}".format(couche_stratifie_a_15_uni.sigma_m1T))
+
     # Écriture dans un fichier CSV
     with open("resultats_couches.csv", "w", newline="") as f:
         writer = csv.DictWriter(f, fieldnames=resultat_total[0].keys())

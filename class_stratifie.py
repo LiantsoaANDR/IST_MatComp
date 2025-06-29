@@ -7,10 +7,11 @@ class Stratifie:
     """
     Class servant aux calculs de couches stratifies
     Cree un objet Stratifie qui est un ensemble de couches
-
-    _ list_monocouches : la liste des monocouches
     """
     def __init__(self, list_monocouches):
+        """
+        _ list_monocouches : la liste des monocouches
+        """
         self.list_monocouches = list_monocouches
         self.nb_monocouches = len(list_monocouches)
 
@@ -32,6 +33,23 @@ class Stratifie:
         self.u_12m = c_prat["u_12m"]
         self.u_16m = c_prat["u_16m"]
         self.u_26m = c_prat["u_26m"]
+
+        self.calcul_UA_UB()
+        self.calcul_sigma_mono()
+
+        self.sigma_m1T = min(couche.sigma_m1T for couche in self.list_monocouches)
+        self.sigma_m1C = max(couche.sigma_m1C for couche in self.list_monocouches)
+
+        self.sigma_m2T = min(couche.sigma_m2T for couche in self.list_monocouches)
+        self.sigma_m2C = max(couche.sigma_m2C for couche in self.list_monocouches)
+
+        self.sigma_m6_plus = min(couche.sigma_m6_plus for couche in self.list_monocouches)
+        self.sigma_m6_moins = max(couche.sigma_m6_moins for couche in self.list_monocouches)
+        
+        self.sigma_mb_plus = min(couche.sigma_mb_plus for couche in self.list_monocouches)
+        self.sigma_mb_moins = max(couche.sigma_mb_moins for couche in self.list_monocouches)
+
+
 
 
     def calcul_position(self):
@@ -96,3 +114,43 @@ class Stratifie:
         u_16m = (-1) * self.S_m[0, 2] / self.S_m[0, 0]
         u_26m = (-1) * self.S_m[1, 2] / self.S_m[1, 1]
         return {"E_1m":E_1m, "E_2m":E_2m, "G_12m": G_12m, "u_12m":u_12m, "u_16m":u_16m, "u_26m":u_26m}
+    
+    def calcul_UA_UB(self):
+        """
+        Calcul de UA pour chaque couche
+        """
+        for couche in self.list_monocouches:
+            couche.UA = self.S_m @ couche.GA_prim @ self.S_m
+        
+        for couche in self.list_monocouches:
+            couche.UB = self.S_m @ couche.GB_prim
+
+
+    def calcul_sigma_mono(self):
+        """
+        Calcul des résistances en traction et compression admissibles appliquées sur une monocouche
+        """
+        for couche in self.list_monocouches:
+            U_11 = couche.UA[0, 0]
+            U_22 = couche.UA[1, 1]
+            U_66 = couche.UA[2, 2]
+            U_1 = couche.UB[0, 0]
+            U_2 = couche.UB[1, 0]
+            U_6 = couche.UB[2, 0]
+            U_12 = couche.UA[0, 1]
+            B_1 = U_11 + U_22 + 2*U_12
+            B_2 = U_1 + U_2      
+
+            couche.sigma_m1T = ((-1)*U_1 + (((U_1**2) + 4*U_11)**0.5)) / (2 * U_11)
+            couche.sigma_m1C = ((-1)*U_1 - (((U_1**2) + 4*U_11)**0.5)) / (2 * U_11)
+
+            couche.sigma_m2T = ((-1)*U_2 + (((U_2**2) + 4*U_22)**0.5)) / (2 * U_22)
+            couche.sigma_m2C = ((-1)*U_2 - (((U_2**2) + 4*U_22)**0.5)) / (2 * U_22)
+
+            couche.sigma_m6_plus = ((-1)*U_6 + (((U_6**2) + 4*U_66)**0.5)) / (2 * U_66)
+            couche.sigma_m6_moins = ((-1)*U_6 - (((U_6**2) + 4*U_66)**0.5)) / (2 * U_66)
+
+            couche.sigma_mb_plus = ((-1)*B_2 + (((B_2**2) + 4*B_1)**0.5)) / (2 * B_1)
+            couche.sigma_mb_moins = ((-1)*B_2 - (((B_2**2) + 4*B_1)**0.5)) / (2 * B_1)
+
+    

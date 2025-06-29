@@ -107,6 +107,18 @@ class Couche:
         self.GA_prim = self.R @ self.GA @ self.R.T
         self.GB_prim = self.R @ self.GB
 
+        self.UA = None
+        self.UB = None
+
+        self.sigma_m1T = None
+        self.sigma_m1C = None
+        self.sigma_m2T = None
+        self.sigma_m2C = None
+        self.sigma_m6_plus = None
+        self.sigma_m6_moins = None
+        self.sigma_mb_plus = None
+        self.sigma_mb_moins = None
+
   
     def calcul_Q(self):
         """
