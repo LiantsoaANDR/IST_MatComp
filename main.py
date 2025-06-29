@@ -23,41 +23,69 @@ def main():
     ]
 
     #Création des monocouches pour calculs stratifiés, monocouches est une liste de monocouches
-    monocouches = [
+    monocouches_a_0_uni = [
         Couche(is_uni=True,  E_f=71500, u_f=0.25, V_f=0.345, E_m=2900, u_m=0.4, alpha=0,   teta=90,  X_t=1100, X_c=-700, Y_t=40, Y_c=-140, T=65, epaisseur=1),
+        Couche(is_uni=True,  E_f=71500, u_f=0.25, V_f=0.345, E_m=2900, u_m=0.4, alpha=0,   teta=0,   X_t=1100, X_c=-700, Y_t=40, Y_c=-140, T=65, epaisseur=1),                        
+        Couche(is_uni=True,  E_f=71500, u_f=0.25, V_f=0.345, E_m=2900, u_m=0.4, alpha=0,   teta=0,   X_t=1100, X_c=-700, Y_t=40, Y_c=-140, T=65, epaisseur=1),                 
+        Couche(is_uni=True,  E_f=71500, u_f=0.25, V_f=0.345, E_m=2900, u_m=0.4, alpha=0,   teta=90,  X_t=1100, X_c=-700, Y_t=40, Y_c=-140, T=65, epaisseur=1)     
+    ]
+    couche_stratifie_a_0_uni = Stratifie(monocouches_a_0_uni)
+
+    monocouches_a_15_uni = [
         Couche(is_uni=True,  E_f=71500, u_f=0.25, V_f=0.345, E_m=2900, u_m=0.4, alpha=15,  teta=90,  X_t=1100, X_c=-700, Y_t=40, Y_c=-140, T=65, epaisseur=1),
-        Couche(is_uni=True,  E_f=71500, u_f=0.25, V_f=0.345, E_m=2900, u_m=0.4, alpha=30,  teta=90,  X_t=1100, X_c=-700, Y_t=40, Y_c=-140, T=65, epaisseur=1),
-        Couche(is_uni=True,  E_f=71500, u_f=0.25, V_f=0.345, E_m=2900, u_m=0.4, alpha=45,  teta=90,  X_t=1100, X_c=-700, Y_t=40, Y_c=-140, T=65, epaisseur=1),
-        Couche(is_uni=True,  E_f=71500, u_f=0.25, V_f=0.345, E_m=2900, u_m=0.4, alpha=0,   teta=0,   X_t=1100, X_c=-700, Y_t=40, Y_c=-140, T=65, epaisseur=1),
         Couche(is_uni=True,  E_f=71500, u_f=0.25, V_f=0.345, E_m=2900, u_m=0.4, alpha=15,  teta=0,   X_t=1100, X_c=-700, Y_t=40, Y_c=-140, T=65, epaisseur=1),
-        Couche(is_uni=True,  E_f=71500, u_f=0.25, V_f=0.345, E_m=2900, u_m=0.4, alpha=30,  teta=0,   X_t=1100, X_c=-700, Y_t=40, Y_c=-140, T=65, epaisseur=1),
-        Couche(is_uni=True,  E_f=71500, u_f=0.25, V_f=0.345, E_m=2900, u_m=0.4, alpha=45,  teta=0,   X_t=1100, X_c=-700, Y_t=40, Y_c=-140, T=65, epaisseur=1),
-        Couche(is_uni=True,  E_f=71500, u_f=0.25, V_f=0.345, E_m=2900, u_m=0.4, alpha=0,   teta=0,   X_t=1100, X_c=-700, Y_t=40, Y_c=-140, T=65, epaisseur=1),
         Couche(is_uni=True,  E_f=71500, u_f=0.25, V_f=0.345, E_m=2900, u_m=0.4, alpha=15,  teta=0,   X_t=1100, X_c=-700, Y_t=40, Y_c=-140, T=65, epaisseur=1),
-        Couche(is_uni=True,  E_f=71500, u_f=0.25, V_f=0.345, E_m=2900, u_m=0.4, alpha=30,  teta=0,   X_t=1100, X_c=-700, Y_t=40, Y_c=-140, T=65, epaisseur=1),
-        Couche(is_uni=True,  E_f=71500, u_f=0.25, V_f=0.345, E_m=2900, u_m=0.4, alpha=45,  teta=0,   X_t=1100, X_c=-700, Y_t=40, Y_c=-140, T=65, epaisseur=1),
-        Couche(is_uni=True,  E_f=71500, u_f=0.25, V_f=0.345, E_m=2900, u_m=0.4, alpha=0,   teta=90,  X_t=1100, X_c=-700, Y_t=40, Y_c=-140, T=65, epaisseur=1),
-        Couche(is_uni=True,  E_f=71500, u_f=0.25, V_f=0.345, E_m=2900, u_m=0.4, alpha=15,  teta=90,  X_t=1100, X_c=-700, Y_t=40, Y_c=-140, T=65, epaisseur=1),
+        Couche(is_uni=True,  E_f=71500, u_f=0.25, V_f=0.345, E_m=2900, u_m=0.4, alpha=15,  teta=90,  X_t=1100, X_c=-700, Y_t=40, Y_c=-140, T=65, epaisseur=1)
+    ]
+    couche_stratifie_a_15_uni = Stratifie(monocouches_a_15_uni)
+
+    monocouches_a_30_uni = [
         Couche(is_uni=True,  E_f=71500, u_f=0.25, V_f=0.345, E_m=2900, u_m=0.4, alpha=30,  teta=90,  X_t=1100, X_c=-700, Y_t=40, Y_c=-140, T=65, epaisseur=1),
+        Couche(is_uni=True,  E_f=71500, u_f=0.25, V_f=0.345, E_m=2900, u_m=0.4, alpha=30,  teta=0,   X_t=1100, X_c=-700, Y_t=40, Y_c=-140, T=65, epaisseur=1),
+        Couche(is_uni=True,  E_f=71500, u_f=0.25, V_f=0.345, E_m=2900, u_m=0.4, alpha=30,  teta=0,   X_t=1100, X_c=-700, Y_t=40, Y_c=-140, T=65, epaisseur=1),
+        Couche(is_uni=True,  E_f=71500, u_f=0.25, V_f=0.345, E_m=2900, u_m=0.4, alpha=30,  teta=90,  X_t=1100, X_c=-700, Y_t=40, Y_c=-140, T=65, epaisseur=1)
+    ]
+    couche_stratifie_a_30_uni = Stratifie(monocouches_a_30_uni)
+
+    monocouches_a_45_uni = [
         Couche(is_uni=True,  E_f=71500, u_f=0.25, V_f=0.345, E_m=2900, u_m=0.4, alpha=45,  teta=90,  X_t=1100, X_c=-700, Y_t=40, Y_c=-140, T=65, epaisseur=1),
+        Couche(is_uni=True,  E_f=71500, u_f=0.25, V_f=0.345, E_m=2900, u_m=0.4, alpha=45,  teta=0,   X_t=1100, X_c=-700, Y_t=40, Y_c=-140, T=65, epaisseur=1),
+        Couche(is_uni=True,  E_f=71500, u_f=0.25, V_f=0.345, E_m=2900, u_m=0.4, alpha=45,  teta=0,   X_t=1100, X_c=-700, Y_t=40, Y_c=-140, T=65, epaisseur=1),
+        Couche(is_uni=True,  E_f=71500, u_f=0.25, V_f=0.345, E_m=2900, u_m=0.4, alpha=45,  teta=90,  X_t=1100, X_c=-700, Y_t=40, Y_c=-140, T=65, epaisseur=1)
+    ]
+    couche_stratifie_a_45_uni = Stratifie(monocouches_a_45_uni)
+
+    monocouches_a_0_bidi = [
         Couche(is_uni=False,  E_f=71500, u_f=0.25, V_f=0.345, E_m=2900, u_m=0.4, alpha=0,   teta=45,  X_t=1100, X_c=-700, Y_t=40, Y_c=-140, T=65, A_1 =0.5, A_2=0.5, epaisseur=1),
+        Couche(is_uni=False,  E_f=71500, u_f=0.25, V_f=0.345, E_m=2900, u_m=0.4, alpha=0,   teta=90,  X_t=1100, X_c=-700, Y_t=40, Y_c=-140, T=65, A_1 =0.5, A_2=0.5, epaisseur=1),
+        Couche(is_uni=False,  E_f=71500, u_f=0.25, V_f=0.345, E_m=2900, u_m=0.4, alpha=0,   teta=90,  X_t=1100, X_c=-700, Y_t=40, Y_c=-140, T=65, A_1 =0.5, A_2=0.5, epaisseur=1),
+        Couche(is_uni=False,  E_f=71500, u_f=0.25, V_f=0.345, E_m=2900, u_m=0.4, alpha=0,   teta=45,  X_t=1100, X_c=-700, Y_t=40, Y_c=-140, T=65, A_1 =0.5, A_2=0.5, epaisseur=1)
+    ]
+    couche_stratifie_a_0_bidi = Stratifie(monocouches_a_0_bidi)
+
+    monocouches_a_15_bidi = [
         Couche(is_uni=False,  E_f=71500, u_f=0.25, V_f=0.345, E_m=2900, u_m=0.4, alpha=15,  teta=45,  X_t=1100, X_c=-700, Y_t=40, Y_c=-140, T=65, A_1 =0.5, A_2=0.5, epaisseur=1),
+        Couche(is_uni=False,  E_f=71500, u_f=0.25, V_f=0.345, E_m=2900, u_m=0.4, alpha=15,  teta=90,  X_t=1100, X_c=-700, Y_t=40, Y_c=-140, T=65, A_1 =0.5, A_2=0.5, epaisseur=1),
+        Couche(is_uni=False,  E_f=71500, u_f=0.25, V_f=0.345, E_m=2900, u_m=0.4, alpha=15,  teta=90,  X_t=1100, X_c=-700, Y_t=40, Y_c=-140, T=65, A_1 =0.5, A_2=0.5, epaisseur=1),
+        Couche(is_uni=False,  E_f=71500, u_f=0.25, V_f=0.345, E_m=2900, u_m=0.4, alpha=15,  teta=45,  X_t=1100, X_c=-700, Y_t=40, Y_c=-140, T=65, A_1 =0.5, A_2=0.5, epaisseur=1)
+    ]
+    couche_stratifie_a_15_bidi = Stratifie(monocouches_a_15_bidi)
+
+    monocouches_a_30_bidi = [
         Couche(is_uni=False,  E_f=71500, u_f=0.25, V_f=0.345, E_m=2900, u_m=0.4, alpha=30,  teta=45,  X_t=1100, X_c=-700, Y_t=40, Y_c=-140, T=65, A_1 =0.5, A_2=0.5, epaisseur=1),
+        Couche(is_uni=False,  E_f=71500, u_f=0.25, V_f=0.345, E_m=2900, u_m=0.4, alpha=30,  teta=90,  X_t=1100, X_c=-700, Y_t=40, Y_c=-140, T=65, A_1 =0.5, A_2=0.5, epaisseur=1),
+        Couche(is_uni=False,  E_f=71500, u_f=0.25, V_f=0.345, E_m=2900, u_m=0.4, alpha=30,  teta=90,  X_t=1100, X_c=-700, Y_t=40, Y_c=-140, T=65, A_1 =0.5, A_2=0.5, epaisseur=1),
+        Couche(is_uni=False,  E_f=71500, u_f=0.25, V_f=0.345, E_m=2900, u_m=0.4, alpha=30,  teta=45,  X_t=1100, X_c=-700, Y_t=40, Y_c=-140, T=65, A_1 =0.5, A_2=0.5, epaisseur=1)
+    ]
+    couche_stratifie_a_30_bidi = Stratifie(monocouches_a_30_bidi)
+
+    monocouches_a_45_bidi = [
         Couche(is_uni=False,  E_f=71500, u_f=0.25, V_f=0.345, E_m=2900, u_m=0.4, alpha=45,  teta=45,  X_t=1100, X_c=-700, Y_t=40, Y_c=-140, T=65, A_1 =0.5, A_2=0.5, epaisseur=1),
-        Couche(is_uni=False,  E_f=71500, u_f=0.25, V_f=0.345, E_m=2900, u_m=0.4, alpha=0,   teta=90,  X_t=1100, X_c=-700, Y_t=40, Y_c=-140, T=65, A_1 =0.5, A_2=0.5, epaisseur=1),
-        Couche(is_uni=False,  E_f=71500, u_f=0.25, V_f=0.345, E_m=2900, u_m=0.4, alpha=15,  teta=90,  X_t=1100, X_c=-700, Y_t=40, Y_c=-140, T=65, A_1 =0.5, A_2=0.5, epaisseur=1),
-        Couche(is_uni=False,  E_f=71500, u_f=0.25, V_f=0.345, E_m=2900, u_m=0.4, alpha=30,  teta=90,  X_t=1100, X_c=-700, Y_t=40, Y_c=-140, T=65, A_1 =0.5, A_2=0.5, epaisseur=1),
         Couche(is_uni=False,  E_f=71500, u_f=0.25, V_f=0.345, E_m=2900, u_m=0.4, alpha=45,  teta=90,  X_t=1100, X_c=-700, Y_t=40, Y_c=-140, T=65, A_1 =0.5, A_2=0.5, epaisseur=1),
-        Couche(is_uni=False,  E_f=71500, u_f=0.25, V_f=0.345, E_m=2900, u_m=0.4, alpha=0,   teta=90,  X_t=1100, X_c=-700, Y_t=40, Y_c=-140, T=65, A_1 =0.5, A_2=0.5, epaisseur=1),
-        Couche(is_uni=False,  E_f=71500, u_f=0.25, V_f=0.345, E_m=2900, u_m=0.4, alpha=15,  teta=90,  X_t=1100, X_c=-700, Y_t=40, Y_c=-140, T=65, A_1 =0.5, A_2=0.5, epaisseur=1),
-        Couche(is_uni=False,  E_f=71500, u_f=0.25, V_f=0.345, E_m=2900, u_m=0.4, alpha=30,  teta=90,  X_t=1100, X_c=-700, Y_t=40, Y_c=-140, T=65, A_1 =0.5, A_2=0.5, epaisseur=1),
         Couche(is_uni=False,  E_f=71500, u_f=0.25, V_f=0.345, E_m=2900, u_m=0.4, alpha=45,  teta=90,  X_t=1100, X_c=-700, Y_t=40, Y_c=-140, T=65, A_1 =0.5, A_2=0.5, epaisseur=1),
-        Couche(is_uni=False,  E_f=71500, u_f=0.25, V_f=0.345, E_m=2900, u_m=0.4, alpha=0,   teta=45,  X_t=1100, X_c=-700, Y_t=40, Y_c=-140, T=65, A_1 =0.5, A_2=0.5, epaisseur=1),
-        Couche(is_uni=False,  E_f=71500, u_f=0.25, V_f=0.345, E_m=2900, u_m=0.4, alpha=15,  teta=45,  X_t=1100, X_c=-700, Y_t=40, Y_c=-140, T=65, A_1 =0.5, A_2=0.5, epaisseur=1),
-        Couche(is_uni=False,  E_f=71500, u_f=0.25, V_f=0.345, E_m=2900, u_m=0.4, alpha=30,  teta=45,  X_t=1100, X_c=-700, Y_t=40, Y_c=-140, T=65, A_1 =0.5, A_2=0.5, epaisseur=1),
         Couche(is_uni=False,  E_f=71500, u_f=0.25, V_f=0.345, E_m=2900, u_m=0.4, alpha=45,  teta=45,  X_t=1100, X_c=-700, Y_t=40, Y_c=-140, T=65, A_1 =0.5, A_2=0.5, epaisseur=1)
     ]
-    couche_stratifie = Stratifie(monocouches)
+    couche_stratifie_a_45_bidi = Stratifie(monocouches_a_45_bidi)
 
 
 
@@ -91,7 +119,7 @@ def main():
 
     print(resultat_total)
     print("Nombre total de couches : {}".format(Couche.nb_objects))
-    print("Le nombre de monocouches dans la strat est : {}".format(couche_stratifie.nb_monocouches ))
+    print("Le nombre de monocouches dans la strat a = 15 UNI est : {}".format(couche_stratifie_a_15_uni.nb_monocouches ))
 
     # Écriture dans un fichier CSV
     with open("resultats_couches.csv", "w", newline="") as f:
@@ -99,6 +127,8 @@ def main():
         writer.writeheader()
         writer.writerows(resultat_total)
 
+
+    print("La matrice A est \n{}".format(couche_stratifie_a_15_uni.A))
 
 if __name__ == "__main__":
     main()

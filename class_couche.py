@@ -52,15 +52,10 @@ class Couche:
         if is_uni:
             if V_f > 0.4:
                 resultat = calcul_melange(E_f, E_m, V_f, V_m, u_m, u_f)
-                print("Loi melange uni :")
-                print(resultat)
             else :
                 resultat = calcul_puck_uni(E_f, E_m, V_f, V_m, u_m, u_f)
-                print("Formules de PUCK uni :")
         else :
-            print("Formules BI :")
             resultat = calcul_puck_bi(E_f, E_m, V_f, V_m, u_f, u_m, A_1, A_2)
-            print(resultat)
 
         self.E_x = resultat["E_x"]
         self.E_y = resultat["E_y"]
