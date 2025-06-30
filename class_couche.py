@@ -122,6 +122,17 @@ class Couche:
         self.sigma_mb_plus = None
         self.sigma_mb_moins = None
 
+        self.UA_f = None
+        self.UB_f = None
+
+        self.sigma_m1T_f = None
+        self.sigma_m1C_f = None
+        self.sigma_m2T_f = None
+        self.sigma_m2C_f = None
+        self.sigma_m6_plus_f = None
+        self.sigma_m6_moins_f = None
+        self.sigma_mb_plus_f = None
+        self.sigma_mb_moins_f = None
   
     def calcul_Q(self):
         """
