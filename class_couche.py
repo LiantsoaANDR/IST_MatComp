@@ -38,6 +38,7 @@ class Couche:
             Couche.nb_objects += 1
             self.id = Couche.nb_objects
 
+        self.is_uni = is_uni
         V_m = 1 - V_f
         self.alpha = radians(alpha)
         self.teta = radians(teta)
@@ -66,7 +67,9 @@ class Couche:
         self.Q = self.calcul_Q()
         self.R = self.calcul_R()
 
-        self.S_prim = self.calcul_S_prim()
+        QS_prim = self.calcul_QS_prim()
+        self.Q_prim = QS_prim["Q_prim"]
+        self.S_prim = QS_prim["S_prim"]
         self.E_1 = 1 / self.S_prim[0, 0]
         self.E_2 = 1 / self.S_prim[1, 1]
         self.G_12 = 1 / self.S_prim[2, 2]
@@ -158,15 +161,16 @@ class Couche:
         return R
 
 
-    def calcul_S_prim(self):
+    def calcul_QS_prim(self):
         """
         Calcul de la matrice de souplesse dans le repere de sollicitations
+        et Q prim
         """
         Q_prim = self.R @ self.Q @ self.R.T
 
         S_prim = np.linalg.inv(Q_prim)
 
-        return S_prim
+        return {"Q_prim" : Q_prim ,"S_prim" : S_prim}
 
 
     def calcul_FA_prim(self):

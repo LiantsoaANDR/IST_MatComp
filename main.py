@@ -103,10 +103,10 @@ def main():
 
     # Partie mise en forme des resultats de calculs monocouches
     resultat_total = []
-
     for couche in couches:
         resultat = {
             "ID_couche": couche.id,
+            "Uni?" : couche.is_uni,
             "Angle Teta" : degrees(couche.teta),
             "E_1": couche.E_1,
             "E_2": couche.E_2,
@@ -145,6 +145,7 @@ def main():
     resultat_strat_uni = []
     for strat in strats_uni:
         resultat_strat_uni.append({
+            "Uni?" : strat.list_monocouches[0].is_uni,
             "alpha": degrees(strat.list_monocouches[0].alpha),
             "sigma_m1C": strat.sigma_m1C,
             "sigma_m1T": strat.sigma_m1T,
@@ -186,6 +187,7 @@ def main():
     resultat_strat_bidi = []
     for strat in strats_bidi:
         resultat_strat_bidi.append({
+            "Uni?" : strat.list_monocouches[0].is_uni,
             "alpha": degrees(strat.list_monocouches[0].alpha),
             "sigma_m1C": strat.sigma_m1C,
             "sigma_m1T": strat.sigma_m1T,

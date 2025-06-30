@@ -84,7 +84,7 @@ class Stratifie:
         """
         A = np.zeros((3, 3))
         for couche in self.list_monocouches:
-            A += couche.Q * couche.epaisseur
+            A += couche.Q_prim * couche.epaisseur
         return A
 
     def calcul_D(self):
@@ -94,7 +94,7 @@ class Stratifie:
         D = np.zeros((3, 3))
         i = 0
         for couche in self.list_monocouches:
-            D += couche.Q * ((self.z[i+1])**3 - (self.z[i])**3)
+            D += couche.Q_prim * ((self.z[i+1])**3 - (self.z[i])**3)
             i += 1
         D = (1/3) * D
         return D
@@ -106,7 +106,7 @@ class Stratifie:
         B = np.zeros((3, 3))
         i = 0
         for couche in self.list_monocouches:
-            B += couche.Q * ((self.z[i+1])**2 - (self.z[i])**2)
+            B += couche.Q_prim * ((self.z[i+1])**2 - (self.z[i])**2)
             i += 1
         B = (1/2) * B
         return B
