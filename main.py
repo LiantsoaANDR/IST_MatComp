@@ -92,7 +92,7 @@ def main():
     #Partie mise en forme des calculs monocouches
     resultat_total = []
 
-    for i, couche in enumerate(couches, start=1):
+    for couche in couches:
         resultat = {
             "ID_couche": couche.id,
             "Angle Teta" : degrees(couche.teta),
@@ -147,7 +147,87 @@ def main():
         writer.writerows(resultat_total)
 
 
+    # Préparation des données pour les stratifiés UNI
+    strats_uni = [
+        couche_stratifie_a_0_uni,
+        couche_stratifie_a_15_uni,
+        couche_stratifie_a_30_uni,
+        couche_stratifie_a_45_uni
+    ]
     
+    resultat_strat_uni = []
+    for strat in strats_uni:
+        resultat_strat_uni.append({
+            "alpha": degrees(strat.list_monocouches[0].alpha),
+            "sigma_m1C": strat.sigma_m1C,
+            "sigma_m1T": strat.sigma_m1T,
+            "sigma_m2C": strat.sigma_m2C,
+            "sigma_m2T": strat.sigma_m2T,
+            "sigma_m6_plus": strat.sigma_m6_plus,
+            "sigma_m6_moins": strat.sigma_m6_moins,
+            "sigma_mb_plus": strat.sigma_mb_plus,
+            "sigma_mb_moins": strat.sigma_mb_moins,
+            "E_1m": strat.E_1m,
+            "E_2m": strat.E_2m,
+            "G_12m": strat.G_12m,
+            "u_12m": strat.u_12m,
+            "u_16m": strat.u_16m,
+            "u_26m": strat.u_26m,
+            "E_1f": strat.E_1f,
+            "E_2f": strat.E_2f,
+            "G_12f": strat.G_12f,
+            "u_12f": strat.u_12f,
+            "u_16f": strat.u_16f,
+            "u_26f": strat.u_26f,
+        })
+
+    with open("resultats_stratifie_uni.csv", "w", newline="") as f:
+        writer = csv.DictWriter(f, fieldnames=resultat_strat_uni[0].keys())
+        writer.writeheader()
+        writer.writerows(resultat_strat_uni)
+
+    # Préparation des données pour les stratifiés BIDIRECTIONNELS
+    strats_bidi = [
+        couche_stratifie_a_0_bidi,
+        couche_stratifie_a_15_bidi,
+        couche_stratifie_a_30_bidi,
+        couche_stratifie_a_45_bidi
+    ]
+
+    resultat_strat_bidi = []
+    for strat in strats_bidi:
+        resultat_strat_bidi.append({
+            "alpha": degrees(strat.list_monocouches[0].alpha),
+            "sigma_m1C": strat.sigma_m1C,
+            "sigma_m1T": strat.sigma_m1T,
+            "sigma_m2C": strat.sigma_m2C,
+            "sigma_m2T": strat.sigma_m2T,
+            "sigma_m6_plus": strat.sigma_m6_plus,
+            "sigma_m6_moins": strat.sigma_m6_moins,
+            "sigma_mb_plus": strat.sigma_mb_plus,
+            "sigma_mb_moins": strat.sigma_mb_moins,
+            "E_1m": strat.E_1m,
+            "E_2m": strat.E_2m,
+            "G_12m": strat.G_12m,
+            "u_12m": strat.u_12m,
+            "u_16m": strat.u_16m,
+            "u_26m": strat.u_26m,
+            "E_1f": strat.E_1f,
+            "E_2f": strat.E_2f,
+            "G_12f": strat.G_12f,
+            "u_12f": strat.u_12f,
+            "u_16f": strat.u_16f,
+            "u_26f": strat.u_26f,
+        })
+
+    with open("resultats_stratifie_bidi.csv", "w", newline="") as f:
+        writer = csv.DictWriter(f, fieldnames=resultat_strat_bidi[0].keys())
+        writer.writeheader()
+        writer.writerows(resultat_strat_bidi)
+
+
+
+
 
 if __name__ == "__main__":
     main()
