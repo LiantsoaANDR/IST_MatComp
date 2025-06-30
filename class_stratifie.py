@@ -64,17 +64,13 @@ class Stratifie:
         """
         Calcul les coordonnées de toutes les couches, et la hauteur
         """
-        hauteur = 0
-        for couche in self.list_monocouches:
-            hauteur += couche.epaisseur
+        hauteur = sum(couche.epaisseur for couche in self.list_monocouches)
 
         z = np.zeros((self.nb_monocouches + 1, 1))
-        z[0, 0] = -(1/2) * hauteur
-        z[self.nb_monocouches, 0] = -z[0, 0]
-        i = 1
-        while i < self.nb_monocouches:
-            z[i, 0] = z[i-1, 0] + self.list_monocouches[i].epaisseur
-            i += 1
+        z[0, 0] = -0.5 * hauteur
+
+        for i in range(1, self.nb_monocouches + 1):
+            z[i, 0] = z[i-1, 0] + self.list_monocouches[i-1].epaisseur
 
         return {"hauteur" : hauteur, "z" : z}
     
