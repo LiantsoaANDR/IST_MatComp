@@ -8,6 +8,18 @@ from math import degrees
 from class_stratifie import Stratifie
 
 def main():
+    """
+    Fonction main
+
+    Dans <couches> : on insère des monocouches pour cacluler leurs propriétés individuelles
+    Dans <monocouhes_a_0_uni>, etc : on insère les monocouches formant la couche stratifiée composée des <monocouhes_a_0_uni>
+    <monocouhes_a_0_uni> peut être <monocouhes_a_15_uni>, <monocouhes_a_0_bidi>, etc
+
+    En output : génère 3 fichiers csv,  1 pour les résultats des caclculs des propriétés individuelles
+                                        1 pour les résultats des calculs des propriétés couche stratifiée unidirectionnel
+                                        1 pour les résultats des calculs des propriétés couche stratifiée bidirectionnel
+
+    """
     #Création des monocouches pour calculs monocouches, couches est une liste de monocouches
     couches = [
         Couche(is_uni=True,  E_f=71000, u_f=0.20, V_f=0.353, E_m=3000, u_m=0.4, alpha=0,   teta=0,   X_t=1000, X_c=-650, Y_t=30, Y_c=-120, T=45),
@@ -22,7 +34,7 @@ def main():
         Couche(is_uni=False,  E_f=72000, u_f=0.20, V_f=0.34, E_m=3000, u_m=0.4, alpha=0,   teta=90,  X_t=650, X_c=-650, Y_t=650, Y_c=-650, T=50, A_1 =0.5, A_2=0.5)
     ]
 
-    #Création des monocouches pour calculs stratifiés, monocouches est une liste de monocouches
+    #Création des monocouches pour calculs stratifiés, monocouches_a_alpha_uni-ou-dir est une liste de monocouches
     monocouches_a_0_uni = [
         Couche(is_uni=True,  E_f=71500, u_f=0.25, V_f=0.345, E_m=2900, u_m=0.4, alpha=0,   teta=90,  X_t=1100, X_c=-700, Y_t=40, Y_c=-140, T=65, epaisseur=1),
         Couche(is_uni=True,  E_f=71500, u_f=0.25, V_f=0.345, E_m=2900, u_m=0.4, alpha=0,   teta=0,   X_t=1100, X_c=-700, Y_t=40, Y_c=-140, T=65, epaisseur=1),                        
@@ -89,7 +101,7 @@ def main():
 
 
 
-    #Partie mise en forme des calculs monocouches
+    # Partie mise en forme des resultats de calculs monocouches
     resultat_total = []
 
     for couche in couches:
@@ -114,40 +126,15 @@ def main():
 
         resultat_total.append(resultat)
 
-    print("Nombre total de couches : {}".format(Couche.nb_objects))
-    print("Le nombre de monocouches dans la strat a = 15 UNI est : {}".format(couche_stratifie_a_15_uni.nb_monocouches))
-    print("La hauteur de la strat a = 15 UNI est : {}".format(couche_stratifie_a_15_uni.hauteur ))
-    print("Les coordonnees des couches de la strat a = 15 UNI est : \n{}".format(couche_stratifie_a_15_uni.z))
-    print("La matrice A est \n{}".format(couche_stratifie_a_15_uni.A))
-    print("La matrice D est \n{}".format(couche_stratifie_a_15_uni.D))
-    print("La matrice B est \n{}".format(couche_stratifie_a_15_uni.B))
-    print("La matrice GA est \n{}".format(couche_stratifie_a_15_uni.list_monocouches[1].GA))
-    print("La matrice GB est \n{}".format(couche_stratifie_a_15_uni.list_monocouches[1].GB))
-    print("La matrice GA_prim est \n{}".format(couche_stratifie_a_15_uni.list_monocouches[1].GA_prim))
-    print("La matrice GB_prim est \n{}".format(couche_stratifie_a_15_uni.list_monocouches[1].GB_prim))
-    print("La matrice Q_m est \n{}".format(couche_stratifie_a_15_uni.Q_m))
-    print("La matrice S_m est \n{}".format(couche_stratifie_a_15_uni.S_m))
-    print("Les const prat sont \n{}".format(couche_stratifie_a_15_uni.calcul_cons_pratique()))
-    print("La matrice UA est \n{}".format(couche_stratifie_a_15_uni.list_monocouches[1].UA))
-    print("La matrice UB est \n{}".format(couche_stratifie_a_15_uni.list_monocouches[1].UB))
 
-    print("sigma_m1T est {}".format(couche_stratifie_a_15_uni.list_monocouches[1].sigma_m1T))
-    print("sigma_m1C est {}".format(couche_stratifie_a_15_uni.list_monocouches[1].sigma_m1C))
-    print("sigma_m2T est {}".format(couche_stratifie_a_15_uni.list_monocouches[1].sigma_m2T))
-    print("sigma_m2C est {}".format(couche_stratifie_a_15_uni.list_monocouches[1].sigma_m2C))
-    print("sigma_m6_plus est {}".format(couche_stratifie_a_15_uni.list_monocouches[1].sigma_m6_plus))
-    print("sigma_mb_plus est {}".format(couche_stratifie_a_15_uni.list_monocouches[1].sigma_mb_plus))
-
-    print("sigma_m1T du stratifie est : {}".format(couche_stratifie_a_15_uni.sigma_m1T))
-
-    # Écriture dans un fichier CSV
+    # Écriture dans un fichier CSV de resultat mono
     with open("resultats_couches.csv", "w", newline="") as f:
         writer = csv.DictWriter(f, fieldnames=resultat_total[0].keys())
         writer.writeheader()
         writer.writerows(resultat_total)
+    print("Fichier resultats_couches.csv genere")
 
-
-    # Préparation des données pour les stratifiés UNI
+    # Partie mise en forme des resultats de calculs stratifiés UNI
     strats_uni = [
         couche_stratifie_a_0_uni,
         couche_stratifie_a_15_uni,
@@ -180,13 +167,15 @@ def main():
             "u_16f": strat.u_16f,
             "u_26f": strat.u_26f,
         })
-
+    # Écriture dans un fichier CSV de resultat strat UNI
     with open("resultats_stratifie_uni.csv", "w", newline="") as f:
         writer = csv.DictWriter(f, fieldnames=resultat_strat_uni[0].keys())
         writer.writeheader()
         writer.writerows(resultat_strat_uni)
+    print("Fichier resultats_stratifie_uni.csv genere")
 
-    # Préparation des données pour les stratifiés BIDIRECTIONNELS
+
+    # Partie mise en forme des resultats de calculs stratifiés BIDI
     strats_bidi = [
         couche_stratifie_a_0_bidi,
         couche_stratifie_a_15_bidi,
@@ -219,11 +208,12 @@ def main():
             "u_16f": strat.u_16f,
             "u_26f": strat.u_26f,
         })
-
+    # Écriture dans un fichier CSV de resultat strat BIDI
     with open("resultats_stratifie_bidi.csv", "w", newline="") as f:
         writer = csv.DictWriter(f, fieldnames=resultat_strat_bidi[0].keys())
         writer.writeheader()
         writer.writerows(resultat_strat_bidi)
+    print("Fichier resultats_stratifie_bidi.csv genere")
 
 
 
